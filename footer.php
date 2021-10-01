@@ -115,7 +115,7 @@ function hideModal(str) {
         //enableTime: true,
         disable: ["2021-09-05", "2021-09-18", "2021-09-24", new Date(2025, 4, 9) ],
         dateFormat: "Y-m-d",
-        minDate: "today",
+        minDate: '<?php echo date('Y-m-d', strtotime(' +1 day')); ?>', // from tomorrow
         maxDate: new Date().fp_incr(14), // 14 days from now
 
         onChange: function(selectedDates, dateStr, instance) {
@@ -151,6 +151,7 @@ function hideModal(str) {
     $(".datepicker").flatpickr({
         //enableTime: true,
         dateFormat: "Y-m-d",
+        mode: "range",
         
         onChange: function(selectedDates, dateStr, instance) {
             // $("#hd_book_dt").val(dateStr)
@@ -342,6 +343,15 @@ function hideModal(str) {
   </div>
 </div>
 
+<script>
+<?php if(isset($_GET['phone'])) { ?>
+
+$(window).on('load', function() {
+    $('#login_modal').modal('show');
+});
+
+<?php } ?>
+</script>
 
 <!-- login Modal 2 -->
 <div class="modal fade" id="login_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

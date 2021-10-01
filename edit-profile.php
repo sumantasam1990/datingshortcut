@@ -255,7 +255,7 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) && $_POS
                         <input required style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;" class="form-control" type="number" min="50" name="my_price" placeholder="Eg. 100" value="<?php echo (isset($my_price) ? $my_price : ''); ?>">
                         
                     </div>
-                    <small style="font-weight: bold; font-style: italic;">Note: Datingshortcut will take 30% comission on each booking.</small>
+                    <small style="font-weight: bold; font-style: italic;">Note: Datingshortcut will take 15% comission on each booking.</small>
                     
 
                 </div>
@@ -507,6 +507,7 @@ function check_income(str) {
         document.getElementById('verify_bank').style.display = "none";
         document.getElementById("verify_b").value = str;
     } else {
+        alert("We need to verify your income. We will integrate that later.")
         document.getElementById('verify_bank').style.display = "block";
         document.getElementById("verify_b").value = "";
     }

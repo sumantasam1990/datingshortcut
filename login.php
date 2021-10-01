@@ -66,7 +66,7 @@ global $wpdb;
     $y = curl_exec($x);
     curl_close($x);
     
-    wp_redirect(home_url("login?step=2&z=gftyGF56Fsh&o=" . md5($code)) . "&phone=" . $wpdb->escape($_POST['user_login']));
+    wp_redirect(home_url("/?step=2&z=gftyGF56Fsh&o=" . md5($code)) . "&phone=" . $wpdb->escape($_POST['user_login']));
     exit;
     
  }
@@ -104,7 +104,7 @@ global $wpdb;
             //return new WP_Error('empty', 'Both fields are required.');
         }
      } else {
-        wp_redirect(home_url("login?step=2&er=error&z=gftyGF56Fsh&o=" . $_POST['zero'] . "&phone=" . $_POST['phone']));
+        wp_redirect(home_url("/?step=2&er=error&z=gftyGF56Fsh&o=" . $_POST['zero'] . "&phone=" . $_POST['phone']));
         exit;
      }
  }

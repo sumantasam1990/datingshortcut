@@ -68,6 +68,8 @@ class My_Widget_1 extends Widget_Base {
 	
 	protected function render() {
         $settings = $this->get_settings_for_display();
+
+        global $wpdb;
         $number      = 24;
         $paged       = (get_query_var('paged')) ? get_query_var('paged') : 1;  
         $offset      = ($paged - 1) * $number;  
@@ -161,6 +163,17 @@ class My_Widget_1 extends Widget_Base {
             <div class="col-md-2">
             <a href="<?php echo home_url() ?>/profile/<?php echo $user->user_login; ?>"><div class="card">
                     
+                    <?php 
+                    $table_name = $wpdb->prefix . "video_verify";
+                    $sql = "select * from $table_name where vf_user_id = '".$user->ID."' and vf_status = '1'";
+                    $results = $wpdb->get_results($sql);
+                    if(count($results) > 0):
+                    ?>
+                    <div class="badge bg-success" style="position: absolute; right: 0; top: 0; background-color: #61CE70 !important;">
+                    <i class="fas fa-check-circle"></i> Verified
+                    </div>
+                    <?php endif; ?>
+
                     <?php if(empty($attachment_url)) { ?>
                     <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg" class="card-img-top" alt="profile photo">
                     <?php } else { ?> 

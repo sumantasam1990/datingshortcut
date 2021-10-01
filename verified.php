@@ -67,7 +67,7 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) && $_POS
 
                 <?php if($results[0]->vf_status == 2 || $results[0]->vf_status == 0){ ?>
                 <form class="mt-4" action="" method="post" enctype="multipart/form-data">
-                    <input onchange="onchangeVideoUpload()" type="file" accept=".mp4" required id="uploadfile" name="verify_video" style="display: none;">
+                    <input onchange="onchangeVideoUpload()" type="file" accept=".mp4,.avi,.mov" required id="uploadfile" name="verify_video" style="display: none;">
                     <div class="d-grid gap-2 col-6 mx-auto">
                     <button onclick="startUploadVideo();" type="button" class="btn btn-danger btn-lg"><i class="fas fa-video"></i> Select Video</button>
                     <div id="video_placeholder"></div>

@@ -244,7 +244,8 @@ class My_Widget_4 extends Widget_Base {
 
 if(isset($_GET['search_date'])) {
     $search_query = $wpdb->escape($_GET['q']);
-        $sql = "SELECT t1.*,t2.* FROM $table_book t1 LEFT JOIN $table_payment t2 on (t1.book_id = t2.book_pay_id) WHERE t1.book_pay_status = '1' AND ((t1.book_to_id = '$curUserID' AND t1.book_date = '$search_query') OR (t1.book_from_id = '$curUserID' AND t1.book_date = '$search_query'))";
+    $exp = explode("to", $search_query);
+        $sql = "SELECT t1.*,t2.* FROM $table_book t1 LEFT JOIN $table_payment t2 on (t1.book_id = t2.book_pay_id) WHERE t1.book_pay_status = '1' AND ((t1.book_to_id = '$curUserID' AND t1.book_date BETWEEN '".$exp[0]."' AND '".$exp[1]."') OR (t1.book_from_id = '$curUserID' AND t1.book_date BETWEEN '".$exp[0]."' AND '".$exp[1]."'))";
         $results = $wpdb->get_results($sql);
 }
 
@@ -396,7 +397,7 @@ if(isset($_POST['sec_code_btn'])) {
                          
                             if($result->book_status == 0) {
                         ?>
-                        <h6 style="font-size: 14px;" class="mb-3">You will get <span style="font-weight: bold;"><?php echo ($result->amount*70)/100; ?> <?php echo $result->currency; ?></span> after finish this date. <br> We took 30% fees (<?php echo ($result->amount*30)/100; ?> <?php echo $result->currency; ?>).</h6>
+                        <h6 style="font-size: 14px;" class="mb-3">You will get <span style="font-weight: bold;"><?php echo ($result->amount*85)/100; ?> <?php echo $result->currency; ?></span> after finish this date. <br> We took 15% fees (<?php echo ($result->amount*15)/100; ?> <?php echo $result->currency; ?>).</h6>
                         
                         
 
@@ -428,7 +429,7 @@ if(isset($_POST['sec_code_btn'])) {
                                     <small>Note: You will get your secret code from the guy/girls you're going to date.</small>
                                 </form>
                                 <?php } else { ?>
-                                    <h6 style="font-size: 18px;" class="mb-3 mt-2"><i class="fas fa-money-check-alt"></i> You got <span style="font-weight: bold;"><?php echo ($result->amount*70)/100; ?> <?php echo $result->currency; ?></span>. <br> <br> <span style="font-size: 12px;">We took 30% fees (<?php echo ($result->amount*30)/100; ?> <?php echo $result->currency; ?>).</span></h6>
+                                    <h6 style="font-size: 18px;" class="mb-3 mt-2"><i class="fas fa-money-check-alt"></i> You got <span style="font-weight: bold;"><?php echo ($result->amount*85)/100; ?> <?php echo $result->currency; ?></span>. <br> <br> <span style="font-size: 12px;">We took 15% fees (<?php echo ($result->amount*15)/100; ?> <?php echo $result->currency; ?>).</span></h6>
                                 <?php } ?>
                                 
                             </div>

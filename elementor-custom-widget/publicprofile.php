@@ -353,7 +353,16 @@ class My_Widget_5 extends Widget_Base {
 
 <div class="row mt-4">
 
-    <div class="col-md-3">
+    <div class="col-md-3" style="position: relative;">
+
+
+	<?php 
+	if(isset($results[0]->vf_status) == 1):
+	?>
+	<div class="badge bg-success" style="position: absolute; right: 19px; top: 4px; background-color: #61CE70 !important;">
+	<i class="fas fa-check-circle"></i> Verified
+	</div>
+	<?php endif; ?>
 
     <?php if(empty($attachment_url)) { ?>
         <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg" class="img-fluid img-thumbnail mb-4 image profile-photo-box-shadow" style="border-radius: <?php echo $settings['br'] ?> !important;" alt="profile photo">
@@ -366,9 +375,9 @@ class My_Widget_5 extends Widget_Base {
 
     <div class="d-grid gap-2 mt-3">
 	
-	<?php if(isset($results[0]->vf_status) == 1) { ?>
+	<!-- <?php //if(isset($results[0]->vf_status) == 1) { ?>
     <a href="#" class="ds-vr-txt-color ds-vr-txt-typo" style="color: <?php echo $settings['vr_color'] ?> !important;"><i class="fas fa-check-circle"></i> Verified &nbsp; </a>
-	<?php } ?>
+	<?php //} ?> -->
 
     <!-- <p style="font-weight: 600;" class="mt-3">Video Verification <span class="badge bg-danger"><a style="text-decoration: none; color: #fff;" href=""><i class="fas fa-play-circle"></i> Play</a></span></p>
     <p>John proved they are the person in the photos by recording a video speaking.</p> -->
@@ -382,7 +391,7 @@ class My_Widget_5 extends Widget_Base {
 
         <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-7">
 
             <h4 class="ds-user-info-txt-color ds-user-info-txt-typo"  style="color: <?php echo $settings['user_info_color']; ?>;"> <?php echo ($loggedin_user->user_login ? $loggedin_user->user_login : 'Username'); ?> </h4>
 			<p><?php echo (isset($sex) ? $sex : ''); ?></p>
@@ -477,7 +486,7 @@ class My_Widget_5 extends Widget_Base {
 
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-5">
 
             
             <div class=" bb-box-shadow bb-border bb-txt-color bb-txt-typo" style="border-radius: <?php echo $settings['bb_br']; ?> !important; padding: <?php echo $settings['bb_pad']; ?>; "> <!-- book_now_sec -->
@@ -492,12 +501,12 @@ class My_Widget_5 extends Widget_Base {
                         <?php if($my_price != '' && $my_price > '0' && $curUserID != $loggedin_user->ID) { ?>
 
 
-                    	<a id="book_sub" href="javascript:void(0)" class="btn btn-lg bb-btn-color booknow bb-wrapper" style="color: <?php echo $settings['bb_btn_color'] ?> !important;"><i class="fas fa-calendar-alt"></i> <?php echo $settings['bb_btn_txt'] ?></a>
+                    	<a id="book_sub" href="javascript:void(0)" class="btn btn-sm bb-btn-color booknow bb-wrapper" style="color: <?php echo $settings['bb_btn_color'] ?> !important;"><i class="fas fa-calendar-alt"></i> <?php echo $settings['bb_btn_txt'] ?></a>
 
 
                     <?php } elseif(isset($_GET['action']) == "elementor") { ?>
 						
-						<a id="book_sub" href="javascript:void(0)" class="btn btn-lg bb-btn-color booknow bb-wrapper" style="color: <?php echo $settings['bb_btn_color'] ?> !important;"><i class="fas fa-calendar-alt"></i> <?php echo $settings['bb_btn_txt'] ?></a>
+						<a id="book_sub" href="javascript:void(0)" class="btn btn-sm bb-btn-color booknow bb-wrapper" style="color: <?php echo $settings['bb_btn_color'] ?> !important;"><i class="fas fa-calendar-alt"></i> <?php echo $settings['bb_btn_txt'] ?></a>
 
 					<?php } ?>
                     <?php } else { ?>
@@ -527,39 +536,7 @@ class My_Widget_5 extends Widget_Base {
 </div>
 
 
-<?php 
-if ( is_user_logged_in() && $curUserID != $loggedin_user->ID ) {
-//if($sex == 'Woman' && $sex_cur_user != 'Woman') { 
-?>
-<section class="container-fluid" style="position: fixed; bottom: 0; background: #FBFBFB; color: #888; padding: 20px;">
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <p>Want to go date with <?php echo ($loggedin_user->user_login); ?>? Book <?php echo ($loggedin_user->user_login); ?> for <span style="font-weight: bold;">two hours</span> only on $<?php echo $my_price; ?>.</p>
-        </div>
-        <div class="col-md-6 text-right">
 
-                <!-- <label id="book_date_time"></label> -->
-                
-                
-                
-                <form action="" method="post">
-                <?php if($my_price != '' && $my_price > '0') { ?>
-                <a id="book_sub" href="javascript:void(0)" class="btn btn-lg bb-btn-color booknow bb-wrapper" style="color: <?php echo $settings['bb_btn_color'] ?> !important; float: right; "><i class="fas fa-calendar-alt"></i> <?php echo $settings['bb_btn_txt'] ?></a>
-                    <?php } ?>
-                    <input type="hidden" id="hd_book_dt" name="book_dt">
-                    <button style="float: right; display: none; " type="submit" class="btn btn-danger btn-lg nextbooked">Next <i class="fas fa-long-arrow-alt-right"></i></button>
-                </form>
-                
-            
-            
-
-        </div>
-    </div>
-</div>
-
-</section>
-<?php } ?>
 
 <!-- booking time modal -->
 
