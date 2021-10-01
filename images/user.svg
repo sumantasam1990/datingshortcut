@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="586px" height="586px" viewBox="0 0 586 586" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>free-user</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="free-user">
+            <rect id="Rectangle" fill="#F9FAFC" x="0" y="0" width="586" height="586"></rect>
+            <path d="M293.041667,303.958333 C330.957292,303.958333 361.791667,273.123958 361.791667,235.208333 L361.791667,223.75 C361.791667,185.834375 330.957292,155 293.041667,155 C255.126042,155 224.291667,185.834375 224.291667,223.75 L224.291667,235.208333 C224.291667,273.123958 255.126042,303.958333 293.041667,303.958333 Z M376.939583,338.115625 C323.039583,323.185417 263.055208,323.185417 209.14375,338.115625 C184.336458,344.990625 167,367.7125 167,393.390625 L167,430 L419.083333,430 L419.083333,393.390625 C419.083333,367.7125 401.746875,344.990625 376.939583,338.115625 Z" id="Combined-Shape" fill="#DBDBDB" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>
