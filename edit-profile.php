@@ -507,7 +507,10 @@ function check_income(str) {
         document.getElementById('verify_bank').style.display = "none";
         document.getElementById("verify_b").value = str;
     } else {
-        alert("We need to verify your income. We will integrate that later.")
+        //alert("We need to verify your income. We will integrate that later.")
+        $("#conf_alert_modal").modal("show");
+        $("#html_confirm").html("We need to verify your income. We will integrate that later.");
+        $("#confirm_title").html("Alert!");
         document.getElementById('verify_bank').style.display = "block";
         document.getElementById("verify_b").value = "";
     }
@@ -515,3 +518,22 @@ function check_income(str) {
 
 
 </script>
+
+<!-- confirm alert Modal -->
+<div class="modal fade" id="conf_alert_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirm_title"></h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body" id="html_confirm">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -43,8 +43,9 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST['finish_quick']) ) {
         update_user_meta( $loggedin_user, 'last_name', sanitize_text_field($_POST['lname']) );
         
         update_user_meta( $loggedin_user, 'mob', sanitize_text_field($_POST['mob_num']) );
+        update_user_meta( $loggedin_user, 'datewith', sanitize_text_field($_POST['date_with']) );
 
-        wp_redirect(home_url("login"));
+        wp_redirect(home_url("/"));
         exit();
     }
 
@@ -63,6 +64,7 @@ $offer = get_user_meta($loggedin_user, 'offe_r', true);
 $fname = get_user_meta($loggedin_user, 'first_name', true);
 $lname = get_user_meta($loggedin_user, 'last_name', true);
 $mob = get_user_meta($loggedin_user, 'mob', true);
+$datewith = get_user_meta($loggedin_user, 'datewith', true);
 
 ?>
     
@@ -77,7 +79,7 @@ $mob = get_user_meta($loggedin_user, 'mob', true);
             
             <h4 class="text-uppercase text-center">Complete your profile</h4>
             <!-- <h5 class="text-uppercase text-center mt-3">Welcome, <?php //echo $current_user->user_firstname; ?></h5> -->
-            <div class="box mt-6">
+            <div class="boxx mt-4" style="border: 2px solid #eee; margin-bottom: 30PX; padding: 20px; border-radius: 16px; box-shadow: 1px 1px 5px 2px #eee; ">
                 <div class="text-center">
                 <?php if(empty($attachment_url)) { ?>
                     <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg" class="profile-photo mb-3" alt="profile photo">
@@ -101,6 +103,15 @@ $mob = get_user_meta($loggedin_user, 'mob', true);
                     
                         
                         <form action="" method="post">
+
+                        <div class="form-group mt-6">
+                            <label style="text-align: left !important;" class="text-uppercase text-left mb-2">Date With*</label>
+                            <select required name="date_with" class="form-control">
+                                <option value="" selected disabled>Select one</option>
+                                <option <?php echo ($datewith == 'Man' ? 'selected' : ''); ?>>Man</option>
+                                <option <?php echo ($datewith == 'Woman' ? 'selected' : ''); ?>>Woman</option>
+                            </select>
+                        </div>
 
                         <div class="row">
                             <div class="col-6">

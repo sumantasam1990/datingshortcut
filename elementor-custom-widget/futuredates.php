@@ -308,7 +308,7 @@ if(isset($_POST['sec_code_btn'])) {
 
 <div class="container mt-2 mb-4">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-md-4 col-lg-4 col-xxl-4">
                 <p><?php echo $settings['label']; ?></p>
             <form class="d-flex" style="width: 100%; " class="mb-4" action="" method="GET">
             
@@ -353,7 +353,7 @@ if(isset($_POST['sec_code_btn'])) {
 
 
                 ?>
-            <div class="col-md-6" style="">
+            <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 col-12" style="">
 
             <div class="card mb-3 wrapper" style="min-height: 330px !important; border-radius: <?php echo $settings['br']; ?>;">
                 <div class="row g-0">
@@ -402,8 +402,9 @@ if(isset($_POST['sec_code_btn'])) {
                         
 
                         <div class="d-grid gap-2">
-                        <a onclick="return confirm('You need to pay us $10 if you reject this person. But if you do not want to pay us $10, we will ban your account for a week.')" class="btn btn-outline-danger btn-lg" href="?r=<?php echo $result->book_id; ?>&id=<?php echo md5($user->user_login); ?>"> Reject </a>
-                        <a onclick="return confirm('Are you sure?')" class="btn btn-success btn-lg" href="?a=<?php echo $result->book_id; ?>&id=<?php echo md5($user->user_login); ?>"> Accept </a>
+                        <a onclick="return confirm_rej_alert('<?php echo $result->book_id; ?>', '<?php echo md5($user->user_login); ?>')" class="btn btn-outline-danger btn-lg" href="?r=<?php echo $result->book_id; ?>&id=<?php echo md5($user->user_login); ?>"> Reject </a>
+
+                        <a style="color: #fff;" onclick="return confirm_alert('<?php echo $result->book_id; ?>', '<?php echo md5($user->user_login); ?>')" class="btn btn-success btn-lg" href="#"> Accept </a>
                         </div>
 
                         <?php } elseif($result->book_status == 2) { ?>
@@ -419,7 +420,7 @@ if(isset($_POST['sec_code_btn'])) {
                                 <?php if($result->book_secret != '1') { ?>
                                 <form class="row" action="" method="post">
                                     <input type="hidden" name="book_id" value="<?php echo $result->book_id; ?>">
-                                    <label>Secret code*</label>
+                                    <label>*Secret code*</label>
                                     <div class="col-6">
                                         <input class="form-control" type="number" required name="sec_code" placeholder="Your secret code">
                                     </div>
@@ -448,7 +449,7 @@ if(isset($_POST['sec_code_btn'])) {
                                 <p class="ds-text-typo-offer-msg ds_e_name_offr" style="color: <?php echo $settings['offr_name_color']; ?>;"><i class="fas fa-check-circle"></i> Congradulations! Your offer has been accepted.</p>
                                 <!------- secret code ------------>
                                 <?php if($result->book_secret > 1): ?>
-                                <h6>Secret Code: <span class="badge bg-dark" style="font-size: 24px;"><?php echo ($result->book_secret > 0 ? $result->book_secret : ''); ?></span></h6>
+                                <h6>*Secret Code: <span class="badge bg-dark" style="font-size: 24px;"><?php echo ($result->book_secret > 0 ? $result->book_secret : ''); ?></span></h6>
                                 <?php endif; ?>
                                 <?php } ?>
                                 
@@ -467,6 +468,106 @@ if(isset($_POST['sec_code_btn'])) {
             <?php } ?>
         </div>
     </div>
+
+
+    <!-- confirm accept alert Modal -->
+<div class="modal fade" id="conf_alert_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirm_title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="html_confirm">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" id="xyz"> I Understand And Agreed </button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- confirm reject Modal -->
+
+<div class="modal fade" id="conf_rej_alert_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirm_title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="html_confirm_rej">
+        
+      </div>
+      <div class="modal-footer">
+        <div class="d-grid gap-2 col-12 mx-auto">
+            <a style="color: #fff;" href="" class="btn btn-success" data-bs-dismiss="modal"> Pay $10 dollars to avoid be ban for one week </a>
+            <a style="color: #fff; background-color: #DC3545 !important;" href="" class="btn btn-danger" style="background-color: #c23616 !important;">I want be ban for a week</a>
+            <a style="color: #fff;" href="" class="btn btn-dark">I want to take advance from my yellow card ( no penalty only once per month )</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function confirm_alert(a,id) {
+    $("#conf_alert_modal").modal("show");
+    $("#html_confirm").html(`
+    <p>Be sure be on time on this date, if you
+don't show up you will be penalized.</p>
+<p>You will receive by email and text
+message restaurant location.</p>
+<p>Went you arrive to the place ask to the
+other person about the confirmation
+code and introduce that code
+immediately on the web or reply with
+that verification code to the text
+message we will sent to your phone.</p>
+<p>This is the only way you will be able to
+receive compensation for your time</p>
+    `);
+    $("#confirm_title").html("Follow this instructions");
+
+    $(document).ready(function() {
+        $("#xyz").click(function() {
+           return window.location = "?a=" + a + "&id=" + id;
+        });
+        
+    });
+
+    return false;
+
+    
+}
+
+function confirm_rej_alert(r,id) {
+    $("#conf_rej_alert_modal").modal("show");
+    $("#html_confirm_rej").html(`
+    <p style='line-height: 22px; font-weight: 500 !important;'>Our goal is you give opportunities to this person to
+show how valuable they can be in your life, that's
+why this profile is not available for you until you
+accept the date, this is a guarantee to avoid
+preferences based on how physically look the other
+person who pays for your time.</p>
+<p>If you want reject this date you can pick one of this options</p>
+    `);
+    $("#confirm_title").html("Follow this instructions");
+
+    $(document).ready(function() {
+        $("#xyz").click(function() {
+           return window.location = "?r=" + r + "&id=" + id;
+        });
+        
+    });
+
+    return false;
+
+    
+}
+</script>
 
 
 <?php 

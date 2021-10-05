@@ -70,6 +70,8 @@ class My_Widget_1 extends Widget_Base {
         $settings = $this->get_settings_for_display();
 
         global $wpdb;
+        $loggedin_user = get_current_user_id();
+        $datewith = get_user_meta($loggedin_user, 'datewith', true);
         $number      = 24;
         $paged       = (get_query_var('paged')) ? get_query_var('paged') : 1;  
         $offset      = ($paged - 1) * $number;  
@@ -97,7 +99,11 @@ class My_Widget_1 extends Widget_Base {
                             'value'   => $_GET['q'],
                             'compare' => 'LIKE'
                         ),
-                        
+                        array(
+                            'key'     => 'sex',
+                            'value'   => $datewith,
+                            'compare' => '='
+                        ),
                 )
             );
         } elseif(isset($_GET['filter_btn'])) {
@@ -119,8 +125,11 @@ class My_Widget_1 extends Widget_Base {
                              'compare' => 'IN'
                         ),
 
-                        
-                        
+                        array(
+                            'key'     => 'sex',
+                            'value'   => $datewith,
+                            'compare' => '='
+                        ),
                     ),
 
                 // 'meta_key' => $_GET['filt'],
@@ -133,6 +142,15 @@ class My_Widget_1 extends Widget_Base {
                 'role' => '',
                 'offset' => $offset,
                 'number' => $number,
+                'meta_query' => array(
+                    'relation' => 'AND',
+                        array(
+                            'key'     => 'sex',
+                            'value'   => $datewith,
+                            'compare' => '='
+                        ),
+                        
+                    ),
                 
             );
         }
@@ -160,7 +178,7 @@ class My_Widget_1 extends Widget_Base {
             $location = get_user_meta($user->ID, 'location', true);
             $age = get_user_meta($user->ID, 'age', true);
             ?>
-            <div class="col-md-2">
+            <div class="col-xxl-2 col-md-2 col-xl-2 col-lg-2 col-6">
             <a href="<?php echo home_url() ?>/profile/<?php echo $user->user_login; ?>"><div class="card">
                     
                     <?php 
@@ -169,9 +187,12 @@ class My_Widget_1 extends Widget_Base {
                     $results = $wpdb->get_results($sql);
                     if(count($results) > 0):
                     ?>
-                    <div class="badge bg-success" style="position: absolute; right: 0; top: 0; background-color: #61CE70 !important;">
-                    <i class="fas fa-check-circle"></i> Verified
+                    <div class="ribbon ribbon-top-right">
+                        <span><i class="fas fa-check-circle"></i> Verified</span>
                     </div>
+                    <!-- <div class="badge bg-success verified-badge">
+                    <i class="fas fa-check-circle"></i> Verified
+                    </div> -->
                     <?php endif; ?>
 
                     <?php if(empty($attachment_url)) { ?>

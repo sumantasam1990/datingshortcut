@@ -42,21 +42,23 @@ global $wpdb;
  //----
 
  if(isset($_POST['log_verify'])) {
-    $code = rand(1000,9999);
+    $code = rand(10000,99999);
     $id = "AC8f038730211d9c9d98fcd0450d6325cc";
     $token = "13620322cf0d075a0e118fe1baec191e";
-    $url = "https://api.twilio.com/2010-04-01/Accounts/$id/SMS/Messages";
+    $url = "https://api.twilio.com/2010-04-01/Accounts/$id/Messages";
     $from = "+18884982510";
-    $to = "+" . $_POST['country_code'] . $wpdb->escape($_POST['user_login']); // twilio trial verified number
-    
+    $to = "+".$_POST['country_code'].$_POST['user_login'];
+  
     $body = "Your login code is " .$code;
     $data = array (
         'From' => $from,
         'To' => $to,
         'Body' => $body,
     );
+
     $post = http_build_query($data);
-    $x = curl_init($url );
+
+    $x = curl_init($url);
     curl_setopt($x, CURLOPT_POST, true);
     curl_setopt($x, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($x, CURLOPT_SSL_VERIFYPEER, false);
