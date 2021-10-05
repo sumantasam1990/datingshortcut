@@ -250,6 +250,29 @@ class My_Widget_1 extends Widget_Base {
         </div>
     </div>
 
+    <!---------------- modal alert ---------------->
+
+    <div class="modal fade show" id="future_alert_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="false">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirm_title"></h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body" id="html_confirm">
+        
+      </div>
+      <div class="modal-footer">
+        <div class="d-grid gap-2 col-12 mx-auto">
+            <a style="color: #fff;" href="" class="btn btn-dark" data-bs-dismiss="modal"> I understand </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
         <?php
 		 

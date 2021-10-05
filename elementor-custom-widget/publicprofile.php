@@ -503,7 +503,7 @@ class My_Widget_5 extends Widget_Base
 
 							<div class=" bb-box-shadow bb-border bb-txt-color bb-txt-typo" style="border-radius: <?php echo $settings['bb_br']; ?> !important; padding: <?php echo $settings['bb_pad']; ?>; ">
 								<!-- book_now_sec -->
-								<h4 class="text-left bb-txt-color bb-txt-typo" color: <?php echo $settings['bb_color']; ?> !important;>Want to go date with <?php echo ($loggedin_user->user_login); ?>? <br> <br> Date <?php echo ($loggedin_user->user_login); ?> for <span style="font-weight: bold;">two hours</span> only on $<?php echo $my_price; ?>.</h4>
+								<h4 class="text-left bb-txt-color bb-txt-typo" style="line-height: 26px; font-size: 16px;" color: <?php echo $settings['bb_color']; ?> !important;>If you want to date with <?php echo ($loggedin_user->user_login); ?>? <br> <br> You can now request a two hours invitation date in restaurant for  $<?php echo $my_price; ?>.</h4>
 
 
 								<!-- <label id="book_date_time"></label> -->

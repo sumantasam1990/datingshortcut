@@ -87,7 +87,7 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) && $_POS
 
                 <p><?php 
                 if($results[0]->vf_status == 0) {
-                    echo "<p class='text-dark'><i class='fas fa-hourglass-half'></i> Approval Pending...</p>";
+                    echo "<p class='text-dark'><i class='fas fa-hourglass-half'></i> Thank you for uploaded your video for verification. We will approve you if everything is good.</p>";
                 } elseif($results[0]->vf_status == 1) {
                     echo "<p class='text-success'><i class='fas fa-check-circle'></i> Your verification has been approved.</p>";
                 } else {

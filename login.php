@@ -21,7 +21,7 @@ global $wpdb;
    $user_data = array();
    $user_data['user_login'] = $username;
    $user_data['user_password'] = $password;
-   $user_data['remember'] = $remember;
+   $user_data['remember'] = true;
    $user = wp_signon( $user_data, false );
    
 
@@ -42,12 +42,14 @@ global $wpdb;
  //----
 
  if(isset($_POST['log_verify'])) {
-    $code = rand(10000,99999);
-    $id = "AC8f038730211d9c9d98fcd0450d6325cc";
-    $token = "13620322cf0d075a0e118fe1baec191e";
+    $code = rand(100000,999999);
+    $id = "";
+    $token = "";
     $url = "https://api.twilio.com/2010-04-01/Accounts/$id/Messages";
-    $from = "+18884982510";
+    $from = "";
     $to = "+".$_POST['country_code'].$_POST['user_login'];
+
+	$too = $_POST['country_code'] . '-' .$_POST['user_login'];
   
     $body = "Your login code is " .$code;
     $data = array (
@@ -68,7 +70,7 @@ global $wpdb;
     $y = curl_exec($x);
     curl_close($x);
     
-    wp_redirect(home_url("/?step=2&z=gftyGF56Fsh&o=" . md5($code)) . "&phone=" . $wpdb->escape($_POST['user_login']));
+    wp_redirect(home_url("/?step=2&z=gftyGF56Fsh&o=" . md5($code)) . "&phone=" . $wpdb->escape($_POST['user_login']) . "&too=" . $too);
     exit;
     
  }
@@ -81,17 +83,19 @@ global $wpdb;
                 // check user by phone number
                 $user = get_users(array(
                     'meta_key' => 'mob',
-                    'meta_value' => sanitize_text_field($_POST['mob_num'])
-                ));
+                    'meta_value' => trim("+" . $_POST['hd_too'])
+                 )); 
                 
                 
     
             if ( empty($user) ) {
                 echo "<script>alert('Please check your phone number.')</script>";
+				wp_redirect(home_url("/?step=2&er=error&z=gftyGF56Fsh&o=" . $_POST['zero'] . "&phone=" . $_POST['phone']) . "&too=" . $too);
+        		exit;
             } else {
                 wp_clear_auth_cookie();
                 wp_set_current_user($user[0]->ID);
-                wp_set_auth_cookie($user[0]->ID);
+                wp_set_auth_cookie($user[0]->ID, true);
         
                 wp_redirect(home_url("edit-profile"));
                 exit();
@@ -106,7 +110,7 @@ global $wpdb;
             //return new WP_Error('empty', 'Both fields are required.');
         }
      } else {
-        wp_redirect(home_url("/?step=2&er=error&z=gftyGF56Fsh&o=" . $_POST['zero'] . "&phone=" . $_POST['phone']));
+        wp_redirect(home_url("/?step=2&er=error&z=gftyGF56Fsh&o=" . $_POST['zero'] . "&phone=" . $_POST['phone']) . "&too=" . $too);
         exit;
      }
  }

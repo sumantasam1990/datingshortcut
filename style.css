@@ -1132,3 +1132,8 @@ textarea {
 	bottom: 30px;
 	transform: rotate(-225deg);
   }
+
+
+  .menu-item {
+	  margin-right: 15px;
+  }

@@ -878,3 +878,48 @@ add_action( "ds_booking_now", "booking" );
 // 	wp_redirect(home_url("/"));
 //     exit(); 
 // }
+
+
+function add_login_check()
+{
+    if (is_user_logged_in()) {
+        if (is_front_page()){
+            wp_redirect('browse');
+            exit; 
+        }
+    }
+}
+
+add_action('wp', 'add_login_check');
+
+
+function add_scriptt() {
+	?>
+
+
+	<script>
+
+    $('document').ready(function() {
+		$("#future_alert_modal").modal("show");
+    $("#html_confirm").html(`
+    <p>None of these people work as Escort Service;
+all these profiles are real people, you will pay
+directly to our website, and we will secure that
+this person attempts to the scheduled date;
+remember offering money for sex is illegal.
+Please behave politely. We will give you the
+chance to show how valuable you are, but Our
+website is not responsible for any good or bad
+result coming out from this romantic
+encounter.</p>
+    `);
+    $("#confirm_title").html("");
+	});
+
+
+
+</script>
+	<?php 
+}
+
+add_action( 'wp_footer', 'add_scriptt' );

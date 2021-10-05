@@ -391,6 +391,7 @@ $(window).on('load', function() {
                     </div>
                 <?php endif; ?>
                 <form action="login" method="post" class="login_form">
+                  <input type="hidden" name="hd_too" value="<?php echo $_GET['too']; ?>">
                     <div class="text-center">
                         <?php 
                         if(isset($_GET['er'])) {
