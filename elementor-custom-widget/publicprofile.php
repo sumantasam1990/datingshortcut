@@ -370,7 +370,7 @@ class My_Widget_5 extends Widget_Base
                     	</div>
 					<?php endif; ?>
 
-					<?php if (empty($attachment_url)) { ?>
+					<?php if (empty($attachment_url) || $loggedin_user->photo_status == 0 || $loggedin_user->photo_status == 1) { ?>
 						<img src="<?php echo get_template_directory_uri(); ?>/images/user.svg" class="img-fluid img-thumbnail mb-4 image profile-photo-box-shadow" style="border-radius: <?php echo $settings['br'] ?> !important;" alt="profile photo">
 					<?php } else { ?>
 						<img src="<?php echo $attachment_url; ?>" class="img-fluid img-thumbnail mb-4 image profile-photo-box-shadow" style="border-radius: <?php echo $settings['br'] ?> !important;" alt="profile photo">
@@ -478,6 +478,7 @@ class My_Widget_5 extends Widget_Base
 									</tr>
 								</tbody>
 							</table>
+                                <p class="text-center"><a style="color: #fff;" class="btn btn-dark" href="<?php echo home_url(); ?>/browse"><i class="fas fa-long-arrow-alt-left"></i> Back To Search</a></p>
 							</div>
 
 							<!-- <table class="table table-borderless">
@@ -503,7 +504,7 @@ class My_Widget_5 extends Widget_Base
 
 							<div class=" bb-box-shadow bb-border bb-txt-color bb-txt-typo" style="border-radius: <?php echo $settings['bb_br']; ?> !important; padding: <?php echo $settings['bb_pad']; ?>; ">
 								<!-- book_now_sec -->
-								<h4 class="text-left bb-txt-color bb-txt-typo" style="line-height: 26px; font-size: 16px;" color: <?php echo $settings['bb_color']; ?> !important;>If you want to date with <?php echo ($loggedin_user->user_login); ?>? <br> <br> You can now request a two hours invitation date in restaurant for  $<?php echo $my_price; ?>.</h4>
+								<h4 class="text-left bb-txt-color bb-txt-typo" style="line-height: 26px; font-size: 16px;" color: <?php echo $settings['bb_color']; ?> !important;>You want to date with <?php echo ($loggedin_user->user_login); ?>? <br> <br> You can now request a two hours invitation date in a restaurant for  $<?php echo $my_price; ?>.</h4>
 
 
 								<!-- <label id="book_date_time"></label> -->
@@ -523,7 +524,9 @@ class My_Widget_5 extends Widget_Base
 
 											<?php } ?>
 										<?php } else { ?>
+                                            <a href="#" class="btn btn-dark btn-sm login_modal_btn"><i class="fas fa-user"></i> Log In</a>
 											<a href="#" id="register_start_modal_btn" class="btn btn-primary btn-sm"><i class="fas fa-user"></i> Create an free account</a>
+
 										<?php } ?>
 
 									</div>
@@ -547,6 +550,8 @@ class My_Widget_5 extends Widget_Base
 				</div>
 			</div>
 		</div>
+
+
 
 
 

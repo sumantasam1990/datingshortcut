@@ -79,7 +79,7 @@ $datewith = get_user_meta($loggedin_user, 'datewith', true);
             
             <h4 class="text-uppercase text-center">Complete your profile</h4>
             <!-- <h5 class="text-uppercase text-center mt-3">Welcome, <?php //echo $current_user->user_firstname; ?></h5> -->
-            <div class="boxx mt-4" style="border: 2px solid #eee; margin-bottom: 30PX; padding: 20px; border-radius: 16px; box-shadow: 1px 1px 5px 2px #eee; ">
+            <div class=" mt-4" style="border: 2px solid #eee; margin-bottom: 30PX; padding: 20px; border-radius: 16px; box-shadow: 1px 1px 5px 2px #eee; ">
                 <div class="text-center">
                 <?php if(empty($attachment_url)) { ?>
                     <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg" class="profile-photo mb-3" alt="profile photo">
@@ -133,7 +133,7 @@ $datewith = get_user_meta($loggedin_user, 'datewith', true);
                         <?php if($mob == '') { ?>
                         <div class="form-group mt-6">
                             <label style="text-align: left !important;" class="text-uppercase text-left mb-2">Mobile Number*</label>
-                            <input style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;" required type="text" class="form-control" placeholder="" name="mob_num" value="<?php echo (isset($mob) ? $mob : ''); ?>">
+                            <input style="border-top-left-radius: 0px !important; border-bottom-left-radius: 0px !important;" required type="text" class="form-control" placeholder="" name="" value="<?php echo (isset($mob) ? $mob : ''); ?>">
                         </div>
                         <?php } else { ?>
                             <div class="form-group mt-6">
@@ -213,7 +213,7 @@ $datewith = get_user_meta($loggedin_user, 'datewith', true);
                                 
                                 
 
-                                <button type="submit" name="finish_quick" class="btn btn-primary mt-6 btn-lg otp_veri">Finish</button>
+                                <button type="submit" name="finish_quick" class="btn btn-primary mt-6 btn-lg ">Finish</button>
                             </div>
 
 
@@ -240,7 +240,50 @@ $datewith = get_user_meta($loggedin_user, 'datewith', true);
     </div>
 
 
+<div class="modal-body text-left" style="padding: inherit !important;">
 
+    <div class="container-fluid boxx">
+        <div class="row text-center">
+            <div class="col-12">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" class="" style="width: 100px; margin-top: -10px;" alt="logo">
+            </div>
+        </div>
+
+
+        <form class="mt-2 row" action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+            <input type="hidden" id="im" name="hd_sex" required>
+            <?php echo do_shortcode('[ds_custom_registration]'); ?>
+
+
+        </form>
+
+    </div>
+
+</div>
 
     
 <?php get_footer(); ?>
+
+<!-- register Modal 2 -->
+<div class="modal fade show" id="register_middle_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div style="padding: 5px;">
+                <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <!--      <div class="modal-header">-->
+            <!--         -->
+            <!--      </div>-->
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#register_middle_modal").modal("show");
+    })
+
+
+</script>

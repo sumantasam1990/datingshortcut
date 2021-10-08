@@ -43,10 +43,10 @@ global $wpdb;
 
  if(isset($_POST['log_verify'])) {
     $code = rand(100000,999999);
-    $id = "";
-    $token = "";
+    $id = "AC8f038730211d9c9d98fcd0450d6325cc";
+    $token = "09ba537653f4ebe8dd7fdd1d9918b562";
     $url = "https://api.twilio.com/2010-04-01/Accounts/$id/Messages";
-    $from = "";
+    $from = "+18884982510";
     $to = "+".$_POST['country_code'].$_POST['user_login'];
 
 	$too = $_POST['country_code'] . '-' .$_POST['user_login'];
@@ -116,11 +116,6 @@ global $wpdb;
  }
 
 
- 
-    
-
- 
- 
 
 ?>
 

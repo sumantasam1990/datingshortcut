@@ -138,21 +138,31 @@ class My_Widget_1 extends Widget_Base {
                 
             );
         } else {
-            $args = array(
-                'role' => '',
-                'offset' => $offset,
-                'number' => $number,
-                'meta_query' => array(
-                    'relation' => 'AND',
+            if($datewith != '') {
+                $args = array(
+                    'role' => '',
+                    'offset' => $offset,
+                    'number' => $number,
+
+                    'meta_query' => array(
+                        'relation' => 'AND',
                         array(
                             'key'     => 'sex',
                             'value'   => $datewith,
                             'compare' => '='
                         ),
-                        
+
                     ),
-                
-            );
+
+                );
+            } else {
+                $args = array(
+                    'role' => '',
+                    'offset' => $offset,
+                    'number' => $number,
+                );
+            }
+
         }
         
         $query       = get_users($args);  
@@ -195,7 +205,7 @@ class My_Widget_1 extends Widget_Base {
                     </div> -->
                     <?php endif; ?>
 
-                    <?php if(empty($attachment_url)) { ?>
+                    <?php if(empty($attachment_url) || $user->photo_status == 0 || $user->photo_status == 1) { ?>
                     <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg" class="card-img-top" alt="profile photo">
                     <?php } else { ?> 
                         <img src="<?php echo $attachment_url; ?>" class="card-img-top" alt="profile photo">

@@ -84,6 +84,7 @@ function loginwithusernameDiv() {
 // });
 
 function hideModal(str) {
+
     if(str == "Man") {
         $("#man_txt").html('<a href="#" class=" btn-link">attractive women</a> for $100 only!');
     } else {
@@ -101,6 +102,14 @@ function hideModal(str) {
     $(window).on('load', function() {
         $('#register_last_modal').modal('show');
     });
+
+<?php } ?>
+
+<?php if(isset($_GET['act']) && isset($_GET['too2'])) { ?>
+
+$(window).on('load', function() {
+    $('#register_middle_modal').modal('show');
+});
 
 <?php } ?>
 
@@ -256,23 +265,32 @@ function hideModal(str) {
 <div class="modal fade" id="register_middle_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
-      </div>
-      <div class="modal-body text-left">
-          
-      <div class="container-fluid">
+        <div style="padding: 5px;">
+            <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        </div>
+<!--      <div class="modal-header">-->
+<!--         -->
+<!--      </div>-->
+      <div class="modal-body text-left" style="padding: inherit !important;">
+
+      <div class="container-fluid boxx">
           <div class="row text-center">
               <div class="col-12">
-              <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" class="" style="width: 100px;" alt="logo">
+              <img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" class="" style="width: 100px; margin-top: -10px;" alt="logo">
               </div>
           </div>
+
+
         <form class="mt-2 row" action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
-	    <input type="hidden" id="im" name="hd_sex" required>
+	    <input type="hidden" id="im" name="hd_sex" value="<?php echo (isset($_GET['hd_sex']) ? $_GET['hd_sex'] : ''); ?>" required>
             <?php echo do_shortcode('[ds_custom_registration]'); ?>
+
+
         </form>
+
       </div>
-        
+
       </div>
     </div>
   </div>
@@ -299,7 +317,7 @@ function hideModal(str) {
         </div>
 
         <div style="padding-left: 20px; padding-right: 20px;">
-        <a class="btn btn-primary btn-lg" href="quickstart?q=next&c=<?php echo $_GET['reg']; ?>"><i class="fas fa-users"></i> Yes add me to that group</a>
+        <a class="btn btn-primary btn-lg login_modal_btn " href="?"><i class="fas fa-users"></i> Yes add me to that group</a>
         <a class="btn btn-danger btn-lg" style="float: right;" href="?">No thanks</a>
         </div>
         

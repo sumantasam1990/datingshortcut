@@ -360,14 +360,14 @@ if(isset($_POST['sec_code_btn'])) {
                     <div class="col-md-5">
 
                     <?php if($result->book_status < 2 && $result->book_to_id == $curUserID) { ?>
-                        <?php if(empty($attachment_url)) { ?>
+                        <?php if(empty($attachment_url) || $user->photo_status == 0 || $user->photo_status == 1) { ?>
                         <img src="<?php echo get_template_directory_uri(); ?>/images/blur.png" class="img-fluid" style="min-height: 100%; width: 100%; object-fit: cover; border-top-left-radius: 16px; border-bottom-left-radius: 16px;" alt="profile photo">
                         <?php } else { ?> 
                             <img src="<?php echo get_template_directory_uri(); ?>/images/blur.png" class="img-fluid " style="min-height: 100%; width: 100%; object-fit: cover; border-top-left-radius: 16px; border-bottom-left-radius: 16px;" alt="profile photo">
                         <?php } ?>
                     
                         <?php } else { ?>
-                            <?php if(empty($attachment_url)) { ?>
+                            <?php if(empty($attachment_url) || $user->photo_status == 0 || $user->photo_status == 1) { ?>
                         <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg" class="img-fluid" style="min-height: 100%; width: 100%; object-fit: cover; border-top-left-radius: 16px; border-bottom-left-radius: 16px;" alt="profile photo">
                         <?php } else { ?> 
                             <img src="<?php echo $attachment_url; ?>" class="img-fluid " style="min-height: 100%; width: 100%; object-fit: cover; border-top-left-radius: 16px; border-bottom-left-radius: 16px;" alt="profile photo">
